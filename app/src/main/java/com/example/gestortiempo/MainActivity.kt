@@ -68,9 +68,8 @@ class MainActivity : AppCompatActivity() {
         if(tarea != ""){
             if(tarea.length > 20){
                 Toast.makeText(this, "Texto demasiado largo, Máximo 20 caracteres", Toast.LENGTH_SHORT).show()
-                return
-            }
-            if (!tareas.contains(tarea)) {
+                campoActividad.setText("")
+            } else if (!tareas.contains(tarea)) {
                 tareas.add(tarea)
                 adaptador.notifyDataSetChanged()
                 campoActividad.setText("")
