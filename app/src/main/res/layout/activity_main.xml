@@ -27,6 +27,12 @@
         android:layout_height="wrap_content"
         android:text="Añadir tarea"/>
 
+    <Button
+        android:id="@+id/botonEliminarTareas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar todas las tarea"/>
+
     <TextView
         android:id="@+id/contadorTareas"
         android:layout_width="match_parent"

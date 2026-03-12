@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var campoActividad: EditText
     lateinit var botonAgregar: Button
+    lateinit var eliminarTareas: Button
     lateinit var listaTareas: ListView
     lateinit var contadorTareas: TextView
-
     var tareas = ArrayList<String>()
     lateinit var adaptador: ArrayAdapter<String>
 
@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         botonAgregar = findViewById(R.id.botonAgregar)
         listaTareas = findViewById(R.id.listaTareas)
         contadorTareas = findViewById(R.id.contadorTareas)
+        eliminarTareas = findViewById(R.id.botonEliminarTareas)
 
         adaptador = ArrayAdapter(
             this,
@@ -49,6 +50,13 @@ class MainActivity : AppCompatActivity() {
             adaptador.notifyDataSetChanged()
             actualizarContador()
         }
+
+        eliminarTareas.setOnClickListener {
+            Toast.makeText(this, "Eliminadas ${tareas.size} tareas", Toast.LENGTH_SHORT).show()
+            tareas.clear()
+            adaptador.notifyDataSetChanged()
+            actualizarContador()
+        }
     }
 
     fun actualizarContador(){
@@ -58,6 +66,10 @@ class MainActivity : AppCompatActivity() {
     fun agregarTarea(){
         val tarea = campoActividad.text.toString()
         if(tarea != ""){
+            if(tarea.length > 20){
+                Toast.makeText(this, "Texto demasiado largo, Máximo 20 caracteres", Toast.LENGTH_SHORT).show()
+                return
+            }
             if (!tareas.contains(tarea)) {
                 tareas.add(tarea)
                 adaptador.notifyDataSetChanged()
